@@ -2,7 +2,7 @@ package homework;
 
 import java.util.Objects;
 
-public class Customer {
+public class Customer implements Comparable<Customer> {
     private final long id;
     private String name;
     private long scores;
@@ -57,5 +57,10 @@ public class Customer {
     public int hashCode() {
         int result = Objects.hashCode(id);
         return result;
+    }
+
+    @Override
+    public int compareTo(Customer o) {
+       return Long.compare(scores, o.scores);
     }
 }
