@@ -2,12 +2,10 @@ package homework;
 
 import java.util.Objects;
 
-public class Customer implements Comparable<Customer> {
+public class Customer {
     private final long id;
     private String name;
     private long scores;
-
-    //todo: 1. в этом классе надо исправить ошибки
 
     public Customer(long id, String name, long scores) {
         this.id = id;
@@ -57,10 +55,5 @@ public class Customer implements Comparable<Customer> {
     public int hashCode() {
         int result = Objects.hashCode(id);
         return result;
-    }
-
-    @Override
-    public int compareTo(Customer o) {
-       return Long.compare(scores, o.scores);
     }
 }
