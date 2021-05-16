@@ -10,8 +10,8 @@ public class TestsProgress {
     public void createTestStatistic() {
         testResultInfo =
                 "Всего было запущено тестов - " + totalTestCount + ",\n"
-                + " Количество тестов, завершившихся неудачно - " + failedTestsCount + ",\n"
-                + " Количество успешных тестов -  " + passedTestCount;
+                + "Количество тестов, завершившихся неудачно - " + failedTestsCount + ",\n"
+                + "Количество успешных тестов -  " + passedTestCount;
     }
 
     public void addTotalCount()
