@@ -41,6 +41,4 @@ public class TestClass {
     {
         throw new RuntimeException("Тест3 с ошибкой");
     }
-
-
 }
