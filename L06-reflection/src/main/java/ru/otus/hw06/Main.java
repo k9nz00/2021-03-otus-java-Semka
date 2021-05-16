@@ -1,15 +1,15 @@
 package ru.otus.hw06;
 
-public class Main {
-    public static void main(String[] args) {
-        if (args.length > 0) {
-//            App.run(args[0]);
+import ru.otus.hw06.core.TestRunner;
 
-            for (String param : args){
-                System.out.println(param);
-            }
-        } else {
-            throw new RuntimeException("Class name is required!");
-        }
+public class Main {
+    public static void main(String[] args) throws Exception {
+//        if (args.length > 0) {
+//            TestRunner testRunner = new TestRunner(args[0]);
+            TestRunner testRunner = new TestRunner("ru.otus.hw06.TestClass");
+            testRunner.run();
+//        } else {
+//            throw new RuntimeException("Class name is required!");
+//        }
     }
 }

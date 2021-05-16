@@ -1,37 +1,19 @@
 package ru.otus.hw06;
 
-import ru.otus.hw06.framework.anotations.After;
-import ru.otus.hw06.framework.anotations.Before;
-import ru.otus.hw06.framework.anotations.Test;
+import ru.otus.hw06.anotations.After;
+import ru.otus.hw06.anotations.Before;
+import ru.otus.hw06.anotations.Test;
 
 public class TestClass {
 
     @Before
-    public void beforeTest() {
+    public void beforeTest1() {
         System.out.println("Before test method1");
     }
 
     @Before
     public void beforeTest2() {
         System.out.println("Before test method2");
-    }
-
-    @Test
-    public void test1()
-    {
-        System.out.println("Test1 method, must be passed");
-    }
-
-    @Test
-    public void test2() throws Exception {
-        System.out.println("Test2 method, must be failed");
-        throw new RuntimeException("Fail test2 method");
-    }
-
-    @Test
-    public void test3()
-    {
-        System.out.println("Test3 method, must be passed");
     }
 
     @After
@@ -43,5 +25,24 @@ public class TestClass {
     public void afterTest2() {
         System.out.println("After test method2");
     }
+
+    @Test
+    public void test1()
+    {
+        System.out.println("Test method1, must be passed");
+    }
+
+    @Test
+    public void test2()
+    {
+        System.out.println("Test method2, must be passed");
+    }
+
+    @Test
+    public void test3()
+    {
+        System.out.println("Test method3, must be failed");
+    }
+
 
 }

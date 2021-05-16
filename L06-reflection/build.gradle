@@ -10,6 +10,9 @@ targetCompatibility = JavaVersion.VERSION_15
 dependencies {
     // This dependency is used by the application.
     implementation 'com.google.guava:guava'
+    // https://mvnrepository.com/artifact/org.projectlombok/lombok
+    implementation group: 'org.projectlombok', name: 'lombok', version: '1.18.20'
+
 }
 
 shadowJar {
@@ -17,7 +20,7 @@ shadowJar {
     archiveVersion.set('0.1')
     archiveClassifier.set('')
     manifest {
-        attributes 'Main-Class': 'ru.otus.hw06.framework.Main'
+        attributes 'Main-Class': 'ru.otus.hw06.Main'
     }
 }
 
