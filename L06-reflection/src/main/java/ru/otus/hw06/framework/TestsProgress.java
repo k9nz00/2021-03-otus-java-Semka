@@ -1,4 +1,4 @@
-package ru.otus.hw06.core;
+package ru.otus.hw06.framework;
 
 public class TestsProgress {
 

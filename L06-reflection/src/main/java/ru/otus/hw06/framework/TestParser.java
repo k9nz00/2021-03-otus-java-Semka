@@ -1,21 +1,22 @@
-package ru.otus.hw06.core;
+package ru.otus.hw06.framework;
 
 import ru.otus.hw06.anotations.After;
 import ru.otus.hw06.anotations.Before;
 import ru.otus.hw06.anotations.Test;
 
 import java.lang.annotation.Annotation;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
 public class TestParser {
 
-    private final Class<?> clazz;
+    private final Constructor<?> classConstructor;
     private final Method[] declaredMethods;
 
-    public TestParser(Class<?> clazz) {
-        this.clazz = clazz;
+    public TestParser(Class<?> clazz) throws NoSuchMethodException {
+        this.classConstructor = clazz.getConstructor();
         declaredMethods = clazz.getDeclaredMethods();
     }
 
@@ -28,7 +29,7 @@ public class TestParser {
         List<TestCase> testCases = new ArrayList<>();
 
         for (Method testMethod: testMethods) {
-            TestCase<?> testCase = new TestCase<>(clazz, beforeMethods, testMethod, afterMethods);
+            TestCase testCase = new TestCase(classConstructor, beforeMethods, testMethod, afterMethods);
             testCases.add(testCase);
         }
         return testCases;

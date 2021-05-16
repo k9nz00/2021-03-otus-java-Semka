@@ -1,17 +1,17 @@
-package ru.otus.hw06.core;
+package ru.otus.hw06.framework;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.util.List;
 
-
-public class TestCase<T> {
-    private final Class<T> clazz;
+public class TestCase {
+    private final Constructor<?> clazz;
     private final List<Method> beforeMethods;
     private final List<Method> afterMethods;
     private final Method testMethod;
 
     TestCase(
-            Class<T> clazz,
+            Constructor<?> clazz,
             List<Method> beforeMethods,
             Method TestMethod,
             List<Method> afterMethods
@@ -22,7 +22,7 @@ public class TestCase<T> {
         testMethod = TestMethod;
     }
 
-    public Class<T> getClazz() {
+    public Constructor<?> getClassConstructor() {
         return clazz;
     }
 

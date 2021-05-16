@@ -1,5 +1,6 @@
-package ru.otus.hw06.core;
+package ru.otus.hw06.framework;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.util.List;
 
@@ -11,7 +12,7 @@ public class TestRunner {
     }
 
     public void run() throws Exception {
-        try {
+
             Class<?> clazz = Class.forName(className);
 
             TestParser testParser = new TestParser(clazz);
@@ -19,25 +20,21 @@ public class TestRunner {
 
             List<TestCase> testCases = testParser.parseAnnotations();
 
-            for (TestCase<?> testCase : testCases) {
+            for (TestCase testCase : testCases) {
                 runCase(testCase, testsProgress);
             }
 
             testsProgress.createTestStatistic();
             testsProgress.printTestsStatistic();
-
-        } catch (ClassNotFoundException e) {
-            System.out.println("Test class not found.");
-        }
     }
 
-    private void runCase(TestCase<?> testCase, TestsProgress testsProgress) throws Exception {
+    private void runCase(TestCase testCase, TestsProgress testsProgress) throws Exception {
 
-        Class<?> clazz = testCase.getClazz();
+        Constructor<?> constructor = testCase.getClassConstructor();
         Method testMethod = testCase.getTestMethod();
         List<Method> afterMethods = testCase.getAfterMethods();
         List<Method> beforeMethods = testCase.getBeforeMethods();
-        Object classInstance = clazz.getConstructor().newInstance();
+        Object classInstance = constructor.newInstance();
 
         try {
             testsProgress.addTotalCount();
@@ -50,7 +47,7 @@ public class TestRunner {
             testMethod.invoke(classInstance);
 
             testsProgress.addPassedTestCount();
-            System.out.println("Тест " + testMethod.getName() + " выполнен успешно");
+            System.out.println("Тест " + testMethod.getName() + " выполнен успешно!");
         } catch (Exception e) {
             testsProgress.addFailedTestsCount();
             System.out.println("Ошибка теста: " + testMethod.getName());
