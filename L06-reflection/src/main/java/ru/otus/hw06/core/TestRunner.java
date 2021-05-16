@@ -61,6 +61,7 @@ public class TestRunner {
                     afterMethod.invoke(classInstance);
                 }
             }
+            System.out.println();
         }
     }
 }

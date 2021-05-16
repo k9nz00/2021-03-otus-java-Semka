@@ -8,40 +8,38 @@ public class TestClass {
 
     @Before
     public void beforeTest1() {
-        System.out.println("Before test method1");
+        System.out.println("Before annotation1 for test");
     }
 
     @Before
     public void beforeTest2() {
-        System.out.println("Before test method2");
+        System.out.println("Before annotation2 for test");
     }
 
     @After
     public void afterTest1() {
-        System.out.println("After test method1");
+        System.out.println("After annotation1 for test");
     }
 
     @After
     public void afterTest2() {
-        System.out.println("After test method2");
+        System.out.println("After annotation1 for test");
     }
 
     @Test
     public void test1()
     {
-        System.out.println("Test method1, must be passed");
     }
 
     @Test
     public void test2()
     {
-        System.out.println("Test method2, must be passed");
     }
 
     @Test
     public void test3()
     {
-        System.out.println("Test method3, must be failed");
+        throw new RuntimeException("Тест3 с ошибкой");
     }
 
 
