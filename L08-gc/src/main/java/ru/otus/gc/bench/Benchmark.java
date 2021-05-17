@@ -14,9 +14,9 @@ class Benchmark implements BenchmarkMBean {
             int local = size;
             Object[] array = new Object[local];
             for (int i = 0; i < local; i++) {
-                array[i] = new String(new char[0]);
+                array[i] = new String(new char[100]);
             }
-            Thread.sleep(10); //Label_1
+            Thread.sleep(10);
         }
     }
 
