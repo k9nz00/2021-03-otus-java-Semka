@@ -5,8 +5,7 @@ import ru.otus.hw06.framework.TestRunner;
 public class Main {
     public static void main(String[] args) throws Exception {
         if (args.length > 0) {
-            TestRunner testRunner = new TestRunner(args[0]);
-            testRunner.run();
+        TestRunner.run(args[0]);
         } else {
             throw new RuntimeException("Class name is required!");
         }

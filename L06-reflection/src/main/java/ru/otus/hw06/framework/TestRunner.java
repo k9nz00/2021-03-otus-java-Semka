@@ -5,13 +5,8 @@ import java.lang.reflect.Method;
 import java.util.List;
 
 public class TestRunner {
-    private final String className;
 
-    public TestRunner(String className) {
-        this.className = className;
-    }
-
-    public void run() throws Exception {
+    public static void run(String className) throws Exception {
 
             Class<?> clazz = Class.forName(className);
 
@@ -24,11 +19,11 @@ public class TestRunner {
                 runCase(testCase, testsProgress);
             }
 
-            testsProgress.createTestStatistic();
-            testsProgress.printTestsStatistic();
+            printTestProgress(testsProgress);
+
     }
 
-    private void runCase(TestCase testCase, TestsProgress testsProgress) throws Exception {
+    private static void runCase(TestCase testCase, TestsProgress testsProgress) throws Exception {
 
         Constructor<?> constructor = testCase.getClassConstructor();
         Method testMethod = testCase.getTestMethod();
@@ -60,5 +55,14 @@ public class TestRunner {
             }
             System.out.println();
         }
+    }
+
+    private static void printTestProgress(TestsProgress progress){
+        String testsResultInfo =
+                "Всего было запущено тестов - " + progress.getTotalTestCount() + ",\n"
+                        + "Количество тестов, завершившихся неудачно - " + progress.getFailedTestsCount() + ",\n"
+                        + "Количество успешных тестов -  " + progress.getPassedTestCount();
+        System.out.println(testsResultInfo);
+        progress.clearStatistic();
     }
 }

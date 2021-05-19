@@ -5,13 +5,17 @@ public class TestsProgress {
     private int totalTestCount = 0;
     private int passedTestCount = 0;
     private int failedTestsCount = 0;
-    private String testResultInfo;
 
-    public void createTestStatistic() {
-        testResultInfo =
-                "Всего было запущено тестов - " + totalTestCount + ",\n"
-                + "Количество тестов, завершившихся неудачно - " + failedTestsCount + ",\n"
-                + "Количество успешных тестов -  " + passedTestCount;
+    public int getTotalTestCount() {
+        return totalTestCount;
+    }
+
+    public int getPassedTestCount() {
+        return passedTestCount;
+    }
+
+    public int getFailedTestsCount() {
+        return failedTestsCount;
     }
 
     public void addTotalCount()
@@ -29,15 +33,9 @@ public class TestsProgress {
         failedTestsCount++;
     }
 
-    private void clearStatistic(){
+    public void clearStatistic(){
         totalTestCount = 0;
         passedTestCount = 0;
         failedTestsCount = 0;
-        testResultInfo = "";
-    }
-
-    public void printTestsStatistic(){
-        System.out.println(testResultInfo);
-        clearStatistic();
     }
 }
