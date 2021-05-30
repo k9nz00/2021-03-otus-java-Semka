@@ -19,9 +19,10 @@ class IocDemo {
     static TestLoggingInterface createTestLoggingClass() {
 
         Method[] methods = TestLogging.class.getMethods();
+        IocDemo iocDemo = new IocDemo();
         for (Method method : methods) {
             if (method.isAnnotationPresent(Log.class)) {
-                methodsWithLogAnnotate.add(getMethodSignature(method));
+                methodsWithLogAnnotate.add(iocDemo.getMethodSignature(method));
             }
         }
         InvocationHandler handler = new DemoInvocationHandler(new TestLogging());
@@ -32,7 +33,7 @@ class IocDemo {
                 handler);
     }
 
-    private static String getMethodSignature(Method method) {
+    private String getMethodSignature(Method method) {
         return method.getName() + Arrays.asList(method.getParameterTypes()).toString();
     }
 
@@ -46,8 +47,9 @@ class IocDemo {
         @Override
         public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
             System.out.println("Выполнение метода: " + method.getName());
+            IocDemo iocDemo = new IocDemo();
 
-            if (methodsWithLogAnnotate.contains(getMethodSignature(method))) {
+            if (methodsWithLogAnnotate.contains(iocDemo.getMethodSignature(method))) {
                 System.out.println("Логирование параметров из " + method.getName() + " с параметрами " + Arrays.toString(method.getParameterTypes()));
                 Arrays.stream(args).forEach(System.out::println);
                 System.out.println("Параметры методы были залогированы");
