@@ -1,7 +1,7 @@
-package ru.otus.l11.polymorphism;
+package ru.otus.l12.polymorphism;
 
-import ru.otus.l11.polymorphism.operations.Create;
-import ru.otus.l11.polymorphism.operations.Update;
+import ru.otus.l12.polymorphism.operations.Create;
+import ru.otus.l12.polymorphism.operations.Update;
 
 /**
  * @author sergey

@@ -1,4 +1,4 @@
-package ru.otus.l11.encapsulation;
+package ru.otus.l12.encapsulation;
 
 import java.util.*;
 

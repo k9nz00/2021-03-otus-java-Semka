@@ -1,6 +1,6 @@
-package ru.otus.l11.polymorphism.operations;
+package ru.otus.l12.polymorphism.operations;
 
-import ru.otus.l11.polymorphism.Operation;
+import ru.otus.l12.polymorphism.Operation;
 
 /**
  * @author sergey

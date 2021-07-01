@@ -1,4 +1,4 @@
-package ru.otus.l11.solid;
+package ru.otus.l12.solid;
 
 import java.util.ArrayList;
 import java.util.Collection;

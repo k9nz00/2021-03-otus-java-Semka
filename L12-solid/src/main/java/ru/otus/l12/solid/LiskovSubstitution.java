@@ -1,4 +1,4 @@
-package ru.otus.l11.solid;
+package ru.otus.l12.solid;
 
 /**
  * @author sergey

@@ -1,4 +1,4 @@
-package ru.otus.l11.cohesion;
+package ru.otus.l12.cohesion;
 
 /**
  * @author spv

@@ -1,7 +1,6 @@
-package ru.otus.l11.polymorphism;
+package ru.otus.l12.polymorphism;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 

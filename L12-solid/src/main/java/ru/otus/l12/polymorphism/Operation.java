@@ -1,4 +1,4 @@
-package ru.otus.l11.polymorphism;
+package ru.otus.l12.polymorphism;
 
 /**
  * @author sergey
