@@ -1,5 +1,6 @@
 package ru.otus.l12.hw;
 
+import ru.otus.l12.hw.exceptions.NotEnoughMoneyException;
 import ru.otus.l12.hw.exceptions.UnavailableAmountException;
 
 import java.util.*;
@@ -43,27 +44,20 @@ public class ATM {
             throw new UnavailableAmountException();
         }
 
+        if (money > this.getAtmBalance()){
+            throw new NotEnoughMoneyException("В банкомате не достаточно денег для выдачи");
+        }
+
         cellList.sort((cell1, cell2) -> cell2.getBanknoteType().compareTo(cell1.getBanknoteType()));
-
-
         Map<BanknoteType, Integer> requestedMoney = new HashMap<>();
-        List<BanknoteType> banknotes = Arrays.asList(BanknoteType.values());
-        banknotes.sort(Comparator.reverseOrder());
-
         int remainsRequestedMoney = money;
         int differenceBalanceAndBills;
         int remains;
-
-        //  если к концу всего цикла в банкомате закончились банкноты, а нужная сумма еще не набралась (remainsRequestedMoney > 0),
-        //  то в таком случае выбрасывать исключение о нехватке денег в банкомате
-        //while  перенести внутрь for, что бы в ситуации когда remainsRequestedMoney == 0 не было не нужных проходов по циклу
-            for (BanknoteType banknote : banknotes) {
-                remains = remainsRequestedMoney % banknote.getBanknoteValue();
+            for (CellImpl cell : cellList) {
+                remains = remainsRequestedMoney % cell.getBanknoteType().getBanknoteValue();
                 differenceBalanceAndBills = remainsRequestedMoney - remains;
-
-
-                requestedMoney.put(banknote, differenceBalanceAndBills / banknote.getBanknoteValue());
-
+                List<BanknoteType> banknoteCount = cell.getBanknotes(differenceBalanceAndBills / cell.getBanknoteType().getBanknoteValue());
+                requestedMoney.put(cell.getBanknoteType(), banknoteCount.size());
                 remainsRequestedMoney = remainsRequestedMoney - differenceBalanceAndBills;
         }
         return requestedMoney;

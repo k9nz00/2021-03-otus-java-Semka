@@ -3,6 +3,11 @@ package ru.otus.l12.hw;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import ru.otus.l12.hw.exceptions.NotEnoughMoneyException;
+
+import static org.assertj.core.api.Assertions.*;
+
+import java.util.Map;
 
 class ATMTest {
     ATM atm = new ATM();
@@ -63,4 +68,38 @@ class ATMTest {
         Assertions
                 .assertTrue(atm.getAtmBalance() > 0);
     }
+
+    @Test
+    @DisplayName("Попытка снять 1560")
+    void getAmount1500() {
+        Map<BanknoteType, Integer> amount = atm.getAmount(1560);
+        System.out.print("купюры при снятии 1560 монет: ");
+        System.out.println(amount);
+        assertThat(amount)
+                .isNotNull();
+    }
+
+    @Test
+    @DisplayName("Попытка снять 25000")
+    void getAmount25000() {
+        Map<BanknoteType, Integer> amount = atm.getAmount(25000);
+        System.out.print("купюры при снятии 25000 монет: ");
+        System.out.println(amount);
+        assertThat(amount)
+                .isNotNull();
+    }
+
+    @Test
+    @DisplayName("Попытка снять 1000_000. Ожидается ошибка из-за недостатка средств в банкомате")
+    void getAmount1000_000() {
+
+        try {
+            Map<BanknoteType, Integer> amount = atm.getAmount(1000_000);
+        } catch (NotEnoughMoneyException e){
+            assertThat(e).hasMessage("В банкомате не достаточно денег для выдачи");
+        }
+    }
+
+
+
 }
