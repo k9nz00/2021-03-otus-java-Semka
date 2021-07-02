@@ -1,5 +1,7 @@
 package ru.otus.l12.hw;
 
+import java.util.Map;
+
 public class ATMDemo {
     public static void main(String[] args) {
 
@@ -32,5 +34,13 @@ public class ATMDemo {
         atm.depositMoney(BanknoteType.THOUSAND);
 
         atm.depositMoney(BanknoteType.TWO_THOUSAND);
+
+//        atm.getAmount(155);
+        Map<BanknoteType, Integer> amount1 = atm.getAmount(12270);
+        Map<BanknoteType, Integer> amount2 = atm.getAmount(5000);
+        Map<BanknoteType, Integer> amount3 = atm.getAmount(25010);
+        Map<BanknoteType, Integer> amount4 = atm.getAmount(3550);
+
+        int a = 10;
     }
 }
