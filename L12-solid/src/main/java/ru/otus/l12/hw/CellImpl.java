@@ -1,5 +1,6 @@
 package ru.otus.l12.hw;
 
+import ru.otus.l12.hw.exceptions.NotEnoughMoneyException;
 import ru.otus.l12.hw.interfaces.Cell;
 
 import java.util.ArrayDeque;
@@ -30,7 +31,6 @@ public class CellImpl implements Cell{
     public boolean cellContainsBanknotes(BanknoteType banknote) {
         boolean result = false;
         BanknoteType banknoteCurrenCell = banknoteStack.peek();
-        assert banknoteCurrenCell != null;
         if (banknoteCurrenCell.equals(banknote)) {
             result = true;
         }

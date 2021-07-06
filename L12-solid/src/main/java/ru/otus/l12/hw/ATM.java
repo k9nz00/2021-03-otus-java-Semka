@@ -4,11 +4,14 @@ import ru.otus.l12.hw.exceptions.NotEnoughMoneyException;
 import ru.otus.l12.hw.exceptions.UnavailableAmountException;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class ATM {
 
-    List<CellImpl> cellList = new ArrayList<>();
+    private final List<CellImpl> cellList = new ArrayList<>();
+
+    public List<CellImpl> getCellList() {
+        return cellList;
+    }
 
     public ATM() {
         Arrays.stream(BanknoteType.values())
@@ -23,7 +26,7 @@ public class ATM {
 
     public boolean depositMoney(BanknoteType banknote) {
         boolean result = false;
-        for (CellImpl cell : cellList) {
+        for (CellImpl cell : getCellList()) {
             if (cell.cellContainsBanknotes(banknote)) {
                 result = cell.addBanknote(banknote);
             }
@@ -33,7 +36,7 @@ public class ATM {
 
     public int getAtmBalance() {
         int balance = 0;
-        for (CellImpl cell : cellList) {
+        for (CellImpl cell : getCellList()) {
             balance += cell.getCellBalance();
         }
         return balance;
@@ -41,7 +44,7 @@ public class ATM {
 
     public Map<BanknoteType, Integer> getAmount(int money){
         if (money % 10 != 0){
-            throw new UnavailableAmountException();
+            throw new UnavailableAmountException("Неподерживаемая сумма для выдачи. Запрошенная сумма должна быть кратна 10");
         }
 
         if (money > this.getAtmBalance()){
@@ -53,7 +56,7 @@ public class ATM {
         int remainsRequestedMoney = money;
         int differenceBalanceAndBills;
         int remains;
-            for (CellImpl cell : cellList) {
+            for (CellImpl cell : getCellList()) {
                 remains = remainsRequestedMoney % cell.getBanknoteType().getBanknoteValue();
                 differenceBalanceAndBills = remainsRequestedMoney - remains;
                 List<BanknoteType> banknoteCount = cell.getBanknotes(differenceBalanceAndBills / cell.getBanknoteType().getBanknoteValue());
