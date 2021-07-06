@@ -1,15 +1,15 @@
 package ru.otus.l12.hw;
 
-import ru.otus.l12.hw.exceptions.NotEnoughMoneyException;
 import ru.otus.l12.hw.interfaces.Cell;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.List;
 
-public class CellImpl implements Cell{
+public class CellImpl implements Cell {
 
-    private final ArrayDeque<BanknoteType> banknoteStack;
+    private final Deque<BanknoteType> banknoteStack;
 
     public BanknoteType getBanknoteType() {
         return banknoteType;
@@ -17,14 +17,14 @@ public class CellImpl implements Cell{
 
     private final BanknoteType banknoteType;
 
-    public CellImpl(ArrayDeque<BanknoteType> banknoteStack, BanknoteType banknoteType) {
+    public CellImpl(Deque<BanknoteType> banknoteStack, BanknoteType banknoteType) {
         this.banknoteStack = banknoteStack;
         this.banknoteType = banknoteType;
     }
 
-    public static CellImpl createCell(BanknoteType type, int banknoteCount){
+    public static CellImpl createCell(BanknoteType type, int banknoteCount) {
         ArrayDeque<BanknoteType> banknoteStack = new ArrayDeque<>();
-        for (int i = 0; i < banknoteCount; i++){
+        for (int i = 0; i < banknoteCount; i++) {
             banknoteStack.add(type);
         }
         return new CellImpl(banknoteStack, type);

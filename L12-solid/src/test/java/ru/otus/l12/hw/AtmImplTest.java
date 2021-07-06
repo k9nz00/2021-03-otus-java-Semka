@@ -5,6 +5,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.otus.l12.hw.exceptions.NotEnoughMoneyException;
+import ru.otus.l12.hw.interfaces.Atm;
+import ru.otus.l12.hw.interfaces.Cell;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,13 +14,13 @@ import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class ATMTest {
+class AtmImplTest {
 
-    ATM atm;
+    Atm atm;
 
     @BeforeEach
     void setUp() {
-        List<CellImpl> cellList = new ArrayList<>();
+        List<Cell> cellList = new ArrayList<>();
         cellList.add(CellImpl.createCell(BanknoteType.TEN, 1000));
         cellList.add(CellImpl.createCell(BanknoteType.FIFTY, 50));
         cellList.add(CellImpl.createCell(BanknoteType.HUNDRED, 89));
@@ -31,7 +33,7 @@ class ATMTest {
         //и в тесте ниже будет попытка внести 1 купюру в ячейку
         //cellList.add(CellImpl.createCell(BanknoteType.FIVE_THOUSAND, 25));
 
-        atm = new ATM(cellList);
+        atm = new AtmImpl(cellList);
     }
 
     @Test
