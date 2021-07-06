@@ -20,7 +20,7 @@ public class AtmImpl implements ru.otus.l12.hw.interfaces.Atm {
         cellList = new ArrayList<>();
         Arrays.stream(BanknoteType.values())
                 .forEach(banknoteType -> {
-                    ArrayDeque<BanknoteType> banknoteStack = new ArrayDeque<>();
+                    List<BanknoteType> banknoteStack = new ArrayList<>();
                     for (int i = 0; i < 10; i++) {
                         banknoteStack.add(banknoteType);
                     }
@@ -66,6 +66,7 @@ public class AtmImpl implements ru.otus.l12.hw.interfaces.Atm {
             throw new UnavailableAmountException("Неподерживаемая сумма для выдачи. Запрошенная сумма должна быть кратна 10");
         }
 
+        //проверка на невозможность снять денег больше, чем находится в банкомате
         if (money > this.getAtmBalance()) {
             throw new NotEnoughMoneyException("В банкомате не достаточно денег для выдачи");
         }

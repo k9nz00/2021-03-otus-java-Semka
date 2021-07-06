@@ -37,49 +37,49 @@ class AtmImplTest {
     }
 
     @Test
-    @DisplayName("Внесмение купюры на 10 попугаев")
+    @DisplayName("Внесение купюры на 10 попугаев")
     void depositMoneyTen() {
         boolean success = atm.depositMoney(BanknoteType.TEN);
         Assertions.assertTrue(success);
     }
 
     @Test
-    @DisplayName("Внесмение купюры на 50 попугаев")
+    @DisplayName("Внесение купюры на 50 попугаев")
     void depositMoneyFifty() {
         boolean success = atm.depositMoney(BanknoteType.FIFTY);
         Assertions.assertTrue(success);
     }
 
     @Test
-    @DisplayName("Внесмение купюры на 100 попугаев")
+    @DisplayName("Внесение купюры на 100 попугаев")
     void depositMoneyHundred() {
         boolean success = atm.depositMoney(BanknoteType.HUNDRED);
         Assertions.assertTrue(success);
     }
 
     @Test
-    @DisplayName("Внесмение купюры на 500 попугаев")
+    @DisplayName("Внесение купюры на 500 попугаев")
     void depositMoneyFiveHundred() {
         boolean success = atm.depositMoney(BanknoteType.FIVE_HUNDRED);
         Assertions.assertTrue(success);
     }
 
     @Test
-    @DisplayName("Внесмение купюры на 1000 попугаев")
+    @DisplayName("Внесение купюры на 1000 попугаев")
     void depositMoneyThousand() {
         boolean success = atm.depositMoney(BanknoteType.THOUSAND);
         Assertions.assertTrue(success);
     }
 
     @Test
-    @DisplayName("Внесмение купюры на 2000 попугаев")
+    @DisplayName("Внесение купюры на 2000 попугаев")
     void depositMoneyTwoThousand() {
         boolean success = atm.depositMoney(BanknoteType.TWO_THOUSAND);
         Assertions.assertTrue(success);
     }
 
     @Test
-    @DisplayName("Внесмение купюры на 5000 попугаев")
+    @DisplayName("Внесение купюры на 5000 попугаев")
     void depositMoneyFiveThousand() {
         Assertions.assertTrue(atm.depositMoney(BanknoteType.FIVE_THOUSAND));
     }

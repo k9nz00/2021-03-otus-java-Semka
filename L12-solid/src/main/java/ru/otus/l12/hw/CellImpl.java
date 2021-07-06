@@ -9,7 +9,7 @@ import java.util.List;
 
 public class CellImpl implements Cell {
 
-    private final Deque<BanknoteType> banknoteStack;
+    private final List<BanknoteType> banknoteStack;
 
     public BanknoteType getBanknoteType() {
         return banknoteType;
@@ -17,13 +17,13 @@ public class CellImpl implements Cell {
 
     private final BanknoteType banknoteType;
 
-    public CellImpl(Deque<BanknoteType> banknoteStack, BanknoteType banknoteType) {
+    public CellImpl(List<BanknoteType> banknoteStack, BanknoteType banknoteType) {
         this.banknoteStack = banknoteStack;
         this.banknoteType = banknoteType;
     }
 
     public static CellImpl createCell(BanknoteType type, int banknoteCount) {
-        ArrayDeque<BanknoteType> banknoteStack = new ArrayDeque<>();
+        List<BanknoteType> banknoteStack = new ArrayList<>();
         for (int i = 0; i < banknoteCount; i++) {
             banknoteStack.add(type);
         }
@@ -32,15 +32,15 @@ public class CellImpl implements Cell {
 
     @Override
     public boolean addBanknote(BanknoteType banknote) {
-        return banknoteStack.offerLast(banknote);
+        return banknoteStack.add(banknote);
     }
 
-    @Override
     /**
      * Проверка на то, что текущая ячейка содержит такие же купюры как и та, что пришла из параметра
      */
+    @Override
     public boolean cellContainsBanknotes(BanknoteType banknote) {
-        BanknoteType banknoteCurrenCell = banknoteStack.peek();
+        BanknoteType banknoteCurrenCell = banknoteStack.get(0);
         return banknoteCurrenCell.equals(banknote);
     }
 
@@ -49,7 +49,7 @@ public class CellImpl implements Cell {
         List<BanknoteType> banknotes = new ArrayList<>();
         BanknoteType banknote;
         for (int i = 0; i < countBanknotes; i++) {
-            banknote = banknoteStack.pollLast();
+            banknote = banknoteStack.remove(i);
             if (banknote != null) {
                 banknotes.add(banknote);
             }
@@ -59,6 +59,6 @@ public class CellImpl implements Cell {
 
     @Override
     public int getCellBalance() {
-        return banknoteStack.size() * banknoteStack.peek().getBanknoteValue();
+        return banknoteStack.size() * banknoteStack.get(0).getBanknoteValue();
     }
 }
