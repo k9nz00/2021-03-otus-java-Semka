@@ -1,16 +1,38 @@
 package ru.otus.l12.hw;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.otus.l12.hw.exceptions.NotEnoughMoneyException;
 
-import static org.assertj.core.api.Assertions.*;
-
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 class ATMTest {
-    ATM atm = new ATM();
+
+    ATM atm;
+
+    @BeforeEach
+    void setUp() {
+        List<CellImpl> cellList = new ArrayList<>();
+        cellList.add(CellImpl.createCell(BanknoteType.TEN, 1000));
+        cellList.add(CellImpl.createCell(BanknoteType.FIFTY, 50));
+        cellList.add(CellImpl.createCell(BanknoteType.HUNDRED, 89));
+        cellList.add(CellImpl.createCell(BanknoteType.FIVE_HUNDRED, 78));
+        cellList.add(CellImpl.createCell(BanknoteType.THOUSAND, 19));
+        cellList.add(CellImpl.createCell(BanknoteType.TWO_THOUSAND, 85));
+        cellList.add(CellImpl.createCell(BanknoteType.FIVE_HUNDRED, 50));
+
+        //задаемся, что ячейка под банкноты 5000 не инициализируется.
+        //и в тесте ниже будет попытка внести 1 купюру в ячейку
+        //cellList.add(CellImpl.createCell(BanknoteType.FIVE_THOUSAND, 25));
+
+        atm = new ATM(cellList);
+    }
 
     @Test
     @DisplayName("Внесмение купюры на 10 попугаев")
@@ -57,8 +79,7 @@ class ATMTest {
     @Test
     @DisplayName("Внесмение купюры на 5000 попугаев")
     void depositMoneyFiveThousand() {
-        boolean success = atm.depositMoney(BanknoteType.FIVE_THOUSAND);
-        Assertions.assertTrue(success);
+        Assertions.assertTrue(atm.depositMoney(BanknoteType.FIVE_THOUSAND));
     }
 
     @Test
@@ -95,11 +116,10 @@ class ATMTest {
 
         try {
             Map<BanknoteType, Integer> amount = atm.getAmount(1000_000);
-        } catch (NotEnoughMoneyException e){
+        } catch (NotEnoughMoneyException e) {
             assertThat(e).hasMessage("В банкомате не достаточно денег для выдачи");
         }
     }
-
 
 
 }

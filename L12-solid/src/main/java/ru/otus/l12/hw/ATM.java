@@ -7,12 +7,13 @@ import java.util.*;
 
 public class ATM {
 
-    private final List<CellImpl> cellList = new ArrayList<>();
+    private List<CellImpl> cellList = new ArrayList<>();
 
     public List<CellImpl> getCellList() {
         return cellList;
     }
 
+    //дефолтный конструктор банкомата, в котором в каждой ячейке лежит по 10 купюр каждого номинала
     public ATM() {
         Arrays.stream(BanknoteType.values())
                 .forEach(banknoteType -> {
@@ -24,6 +25,12 @@ public class ATM {
                 });
     }
 
+    public ATM(List<CellImpl> cellList) {
+        this.cellList = cellList;
+    }
+
+
+    //Предполагается, что банкноты вносятся в ячейки(кассеты) по одной
     public boolean depositMoney(BanknoteType banknote) {
         boolean result = false;
         for (CellImpl cell : getCellList()) {
@@ -31,6 +38,12 @@ public class ATM {
                 result = cell.addBanknote(banknote);
             }
         }
+
+        if (!result && Arrays.asList(BanknoteType.values()).contains(banknote)){
+            CellImpl cell = CellImpl.createCell(banknote, 1);
+            result = this.cellList.add(cell);
+        }
+
         return result;
     }
 
@@ -43,6 +56,7 @@ public class ATM {
     }
 
     public Map<BanknoteType, Integer> getAmount(int money){
+        //В банкомате могут быть только купюры кратные 10. Монеты не поддерживаются
         if (money % 10 != 0){
             throw new UnavailableAmountException("Неподерживаемая сумма для выдачи. Запрошенная сумма должна быть кратна 10");
         }

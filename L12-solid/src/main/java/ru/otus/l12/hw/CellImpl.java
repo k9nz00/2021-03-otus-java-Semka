@@ -22,19 +22,26 @@ public class CellImpl implements Cell{
         this.banknoteType = banknoteType;
     }
 
+    public static CellImpl createCell(BanknoteType type, int banknoteCount){
+        ArrayDeque<BanknoteType> banknoteStack = new ArrayDeque<>();
+        for (int i = 0; i < banknoteCount; i++){
+            banknoteStack.add(type);
+        }
+        return new CellImpl(banknoteStack, type);
+    }
+
     @Override
     public boolean addBanknote(BanknoteType banknote) {
         return banknoteStack.offerLast(banknote);
     }
 
     @Override
+    /**
+     * Проверка на то, что текущая ячейка содержит такие же купюры как и та, что пришла из параметра
+     */
     public boolean cellContainsBanknotes(BanknoteType banknote) {
-        boolean result = false;
         BanknoteType banknoteCurrenCell = banknoteStack.peek();
-        if (banknoteCurrenCell.equals(banknote)) {
-            result = true;
-        }
-        return result;
+        return banknoteCurrenCell.equals(banknote);
     }
 
     @Override
