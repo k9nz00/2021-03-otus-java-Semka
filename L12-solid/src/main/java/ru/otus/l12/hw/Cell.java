@@ -1,7 +1,4 @@
-package ru.otus.l12.hw.interfaces;
-
-
-import ru.otus.l12.hw.BanknoteType;
+package ru.otus.l12.hw;
 
 import java.util.List;
 

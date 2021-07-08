@@ -5,8 +5,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.otus.l12.hw.exceptions.NotEnoughMoneyException;
-import ru.otus.l12.hw.interfaces.Atm;
-import ru.otus.l12.hw.interfaces.Cell;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,10 +1,6 @@
 package ru.otus.l12.hw;
 
-import ru.otus.l12.hw.interfaces.Cell;
-
-import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Deque;
 import java.util.List;
 
 public class CellImpl implements Cell {

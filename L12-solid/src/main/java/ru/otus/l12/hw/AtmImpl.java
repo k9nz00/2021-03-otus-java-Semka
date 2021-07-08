@@ -2,11 +2,10 @@ package ru.otus.l12.hw;
 
 import ru.otus.l12.hw.exceptions.NotEnoughMoneyException;
 import ru.otus.l12.hw.exceptions.UnavailableAmountException;
-import ru.otus.l12.hw.interfaces.Cell;
 
 import java.util.*;
 
-public class AtmImpl implements ru.otus.l12.hw.interfaces.Atm {
+public class AtmImpl implements Atm {
 
     private final List<Cell> cellList;
 
@@ -15,24 +14,10 @@ public class AtmImpl implements ru.otus.l12.hw.interfaces.Atm {
         return cellList;
     }
 
-    //дефолтный конструктор банкомата, в котором в каждой ячейке лежит по 10 купюр каждого номинала
-    public AtmImpl() {
-        cellList = new ArrayList<>();
-        Arrays.stream(BanknoteType.values())
-                .forEach(banknoteType -> {
-                    List<BanknoteType> banknoteStack = new ArrayList<>();
-                    for (int i = 0; i < 10; i++) {
-                        banknoteStack.add(banknoteType);
-                    }
-                    cellList.add(new CellImpl(banknoteStack, banknoteType));
-                });
-    }
-
     public AtmImpl(List<Cell> cellList) {
         this.cellList = cellList;
     }
 
-    //Предполагается, что банкноты вносятся в ячейки(кассеты) по одной
     @Override
     public boolean depositMoney(BanknoteType banknote) {
         boolean result = false;
@@ -41,12 +26,6 @@ public class AtmImpl implements ru.otus.l12.hw.interfaces.Atm {
                 result = cell.addBanknote(banknote);
             }
         }
-
-        if (!result && Arrays.asList(BanknoteType.values()).contains(banknote)) {
-            Cell cell = CellImpl.createCell(banknote, 1);
-            result = this.cellList.add(cell);
-        }
-
         return result;
     }
 
