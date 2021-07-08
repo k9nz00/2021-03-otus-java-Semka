@@ -26,10 +26,7 @@ class AtmImplTest {
         cellList.add(CellImpl.createCell(BanknoteType.THOUSAND, 19));
         cellList.add(CellImpl.createCell(BanknoteType.TWO_THOUSAND, 85));
         cellList.add(CellImpl.createCell(BanknoteType.FIVE_HUNDRED, 50));
-
-        //задаемся, что ячейка под банкноты 5000 не инициализируется.
-        //и в тесте ниже будет попытка внести 1 купюру в ячейку
-        //cellList.add(CellImpl.createCell(BanknoteType.FIVE_THOUSAND, 25));
+        cellList.add(CellImpl.createCell(BanknoteType.FIVE_THOUSAND, 25));
 
         atm = new AtmImpl(cellList);
     }
