@@ -24,12 +24,12 @@ public class EntitySQLMetaDataImpl implements EntitySQLMetaData {
 
     @Override
     public String getInsertSql() {
-        return String.format("INSERT INTO %s (%s) VALUES (%s)", metaData.getName(), getFieldNameWithoutId(), getPlaceHolders(metaData.getFieldsWithoutId()));
+        return String.format("INSERT INTO %s (%s) VALUES (%s)", metaData.getName(), getFieldsNameWithoutId(), getPlaceHolders(metaData.getFieldsWithoutId()));
     }
 
     @Override
     public String getUpdateSql() {
-        return String.format("UPDATE %s SET %s = ? where %s = ?", metaData.getName(), getFieldNameWithoutId(), metaData.getIdField().getName());
+        return String.format("UPDATE %s SET %s = ? where %s = ?", metaData.getName(), getFieldsNameWithoutId(), metaData.getIdField().getName());
     }
 
     private String getAllFieldsName() {
@@ -38,7 +38,7 @@ public class EntitySQLMetaDataImpl implements EntitySQLMetaData {
                 .collect(Collectors.joining(", "));
     }
 
-    private String getFieldNameWithoutId() {
+    private String getFieldsNameWithoutId() {
         return metaData.getFieldsWithoutId().stream().
                 map(Field::getName)
                 .collect(Collectors.joining(", "));
