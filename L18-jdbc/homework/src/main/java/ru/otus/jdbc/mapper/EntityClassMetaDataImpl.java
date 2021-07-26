@@ -23,17 +23,12 @@ public class EntityClassMetaDataImpl<T> implements EntityClassMetaData {
     }
 
     private Field getFieldWithId(List<Field> allFields) {
-        Field fieldWithId = null;
         for (Field field : allFields) {
-            try {
-                if (field.isAnnotationPresent(Id.class)) {
-                    fieldWithId = field;
-                }
-            } catch (NoSuchElementException e) {
-                throw new NoSuchElementException("not found field with Id annotation");
+            if (field.isAnnotationPresent(Id.class)) {
+                return field;
             }
         }
-        return fieldWithId;
+        return null;
     }
 
     private List<Field> getFieldsExceptFieldWithId() {
@@ -53,7 +48,7 @@ public class EntityClassMetaDataImpl<T> implements EntityClassMetaData {
     @Override
     public String getName() {
         int lastPoint = name.lastIndexOf(".");
-        return name.substring(lastPoint+1).toLowerCase(Locale.ROOT);
+        return name.substring(lastPoint + 1).toLowerCase(Locale.ROOT);
     }
 
     @Override

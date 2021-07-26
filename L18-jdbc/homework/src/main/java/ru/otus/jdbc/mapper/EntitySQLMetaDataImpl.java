@@ -45,10 +45,7 @@ public class EntitySQLMetaDataImpl implements EntitySQLMetaData {
     }
 
     private String getPlaceHolders(List<Field> fieldList) {
-        StringBuilder placeHolders = new StringBuilder();
-        for (int i = 0; i < fieldList.size(); i++) {
-            placeHolders.append("?,");
-        }
+        String placeHolders =  "?,".repeat(fieldList.size());
         return placeHolders.substring(0, placeHolders.length() - 1);
     }
 }
